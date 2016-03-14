@@ -1,0 +1,101 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://artifactory.rnd.meizu.com/artifactory/all'
+        }
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+    }
+}
+apply plugin: 'com.jfrog.bintray'
+
+def FILE_LOCAL_PROPERTIES = "local.properties"
+Properties localProp = new Properties()
+def getFileInDir = { dir -> 
+    File ret = new File("$dir$File.separator$FILE_LOCAL_PROPERTIES")
+    ret?.exists() ? ret : null
+}
+
+def rootLocalPropFile = getFileInDir(project.rootDir)
+println "root dir is ${project.rootDir}"
+if (rootLocalPropFile) {
+    println "root local.properties is loaded"
+    localProp.load(rootLocalPropFile.newDataInputStream())
+}
+
+def localPropFile = getFileInDir(project.projectDir)
+println "project dir is ${project.projectDir}"
+if (localPropFile) {
+    println "project local.properties is loaded"
+    Properties tmpProp = new Properties()
+    tmpProp.load(localPropFile.newDataInputStream())
+    localProp.putAll(tmpProp)
+}
+    
+def propLocal = { localProp?.get it }
+
+
+group = 'com.jween.gradle'
+version = '1.0'
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+def u = "${propLocal 'bintray_user'}"
+def k = "${propLocal 'bintray_api_key'}"
+
+bintray {
+    user = u
+    key = k
+    publications = ['SePublication']
+     
+    pkg {
+        repo = 'maven'
+        name = 'android-soexcluder'
+        userOrg = u
+        licenses = ['Apache-2.0']
+        // vcsUrl = 'https://github.com/bintray/gradle-bintray-plugin.git'
+        
+        version {
+			name = version
+			desc = 'Android So Excluder Plugin'
+            released  = new Date()
+			vcsTag = version
+			attributes = ['gradle-plugin': 'com.jween:com.jween.gradle:android-soexcluder']
+		}
+    }
+}
+
+publishing {
+	publications {
+		SePublication(MavenPublication) {
+			from components.java
+            // artifact sourceJar
+            artifact (jar)
+			groupId 'com.jween.gradle'
+    		artifactId 'android-soexcluder'
+    		version version
+		}
+	}
+}
+
+
+apply plugin: 'groovy'
+apply plugin: 'nebula.provided-base'
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    
+    provided 'com.android.tools.build:gradle:1.3.1'
+}
+
+repositories {
+    maven {
+        url 'http://artifactory.rnd.meizu.com/artifactory/jcenter'
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
