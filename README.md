@@ -26,10 +26,9 @@ Usage
     ```
     **Note**: You MUST apply android-soexcluder AFTER android application plugin
 
- 2. Wish we have step 2! 
+2. Wish we have step 2! 
  
     But that's it, it a quite simple small tool to deal with so files.
- 
 
 Configuration
 -------------
@@ -72,7 +71,7 @@ Configuration
     }
     ```
 
- 3. You can even use regex in flavor/buildType entry!
+3. You can even use regex in flavor/buildType entry!
  
      ```groovy
      soexcluder {
@@ -83,7 +82,7 @@ Configuration
          }
      }
      ```
- 
+
 License   
 -------   
  
