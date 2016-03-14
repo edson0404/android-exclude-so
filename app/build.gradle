@@ -9,6 +9,10 @@ buildscript {
 }
 apply plugin: 'com.jfrog.bintray'
 
+
+// 
+// read bintray user and api key form gitignored local.properties file
+// 
 def FILE_LOCAL_PROPERTIES = "local.properties"
 Properties localProp = new Properties()
 def getFileInDir = { dir -> 
@@ -54,12 +58,12 @@ bintray {
         name = ARTIFACT_ID
         userOrg = u
         licenses = ['Copyfree'] // fuck no, I need help to change this license to BEER-WARE
-        vcsUrl = 'https://git.ipd.meizu.com:AnR/Soexcluder.git'
+        vcsUrl = 'https://github.com/Jween/android-soexcluder.git'
         
         version {
 			name = VERSION
-			desc = 'Android So Excluder Plugin'
-            // released  = new Date()
+			desc = 'This plugin will help you exclude so files by flavor or buildType'
+            // released  = new Date() // bug here
 			vcsTag = VERSION
 			attributes = ['gradle-plugin': 'com.jween:com.jween.gradle:android-soexcluder']
 		}

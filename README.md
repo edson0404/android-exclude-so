@@ -21,7 +21,7 @@ Usage
     }
 
 
-    apply plugin: 'com.android.application' //or apply plugin: 'java'
+    apply plugin: 'com.android.application'
     apply plugin: 'android-soexcluder'
     ```
     **Note**: You MUST apply android-soexcluder AFTER android application plugin
@@ -47,10 +47,6 @@ Configuration
             include "lib/armeabi-v7a/*.so" 
             exclude "lib/armeabi-v7a/foo.so"
         }
-        
-        ".*y" {
-            exclude "**/*"
-        }
     }
     ```
 
@@ -63,10 +59,6 @@ Configuration
         debug {
             include "**/*" 
             exclude "**/foo.so"
-        }
-        
-        ".*y" {
-            exclude "**/*"
         }
     }
     ```
