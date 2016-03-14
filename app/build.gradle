@@ -17,16 +17,12 @@ def getFileInDir = { dir ->
 }
 
 def rootLocalPropFile = getFileInDir(project.rootDir)
-println "root dir is ${project.rootDir}"
 if (rootLocalPropFile) {
-    println "root local.properties is loaded"
     localProp.load(rootLocalPropFile.newDataInputStream())
 }
 
 def localPropFile = getFileInDir(project.projectDir)
-println "project dir is ${project.projectDir}"
 if (localPropFile) {
-    println "project local.properties is loaded"
     Properties tmpProp = new Properties()
     tmpProp.load(localPropFile.newDataInputStream())
     localProp.putAll(tmpProp)
