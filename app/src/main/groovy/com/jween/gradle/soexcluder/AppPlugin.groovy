@@ -2,9 +2,13 @@ package com.jween.gradle.soexcluder
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.file.FileTree
+import org.gradle.api.file.FileCollection
 
 import java.util.Arrays
 import java.util.List
+
+
 
 /**
  * Created with Atom by Jween on 3/14/2016

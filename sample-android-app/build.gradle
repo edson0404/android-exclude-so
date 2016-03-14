@@ -1,18 +1,17 @@
-import static groovy.io.FileType.FILES
-
-
-import org.gradle.api.tasks.Delete
-import org.gradle.api.file.FileTree
-import org.gradle.api.file.FileCollection
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha1'
+        classpath 'com.jween.gradle:android-soexcluder:1.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
 
 apply plugin: 'com.android.application'
-
-
-
-
-
-// def helper = new Helper()
-
+apply plugin: 'android-soexcluder'
 android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -49,26 +48,9 @@ android {
     }
 }
 
-class Rule {
-    final String name
-    List<String> excludeList = []
-    List<String> includeList = []
-    
-    Rule(String name) {
-        this.name = name
-    }
-    
-    void exclude(String...args) {
-        excludeList = Arrays.asList(args)
-    }
-    
-    void include(String...args) {
-        includeList = Arrays.asList(args)
-    }
-}
 
-apply plugin: AppPlugin
-
+// apply plugin: AppPlugin
+// 
 soexcluder {
     xxx {
         exclude "lib/**/*-jni.so"
