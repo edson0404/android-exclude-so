@@ -56,8 +56,9 @@ bintray {
     pkg {
         repo = 'maven'
         name = ARTIFACT_ID
-        userOrg = u
+        // userOrg = u  
         licenses = ['Copyfree'] // fuck no, I need help to change this license to BEER-WARE
+        websiteUrl = 'https://github.com/Jween/android-soexcluder'
         vcsUrl = 'https://github.com/Jween/android-soexcluder.git'
         
         version {
@@ -70,12 +71,18 @@ bintray {
     }
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
 publishing {
 	publications {
 		SePublication(MavenPublication) {
-			// from components.java
-            // artifact sourceJar
-            artifact (jar)
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
 			groupId GROUP
     		artifactId ARTIFACT_ID
     		version version
