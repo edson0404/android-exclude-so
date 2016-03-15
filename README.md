@@ -19,7 +19,7 @@ Usage
        }
 
        dependencies {
-          classpath 'com.jween.gradle:android-soexcluder:1.0'
+          classpath 'com.jween.gradle:android-soexcluder:1.1'
        }
     }
 
@@ -45,10 +45,12 @@ Configuration
             exclude "lib/armeabi-v7a/foo.so", "lib/armeabi-v8a/bar.so"
         }
         
-        // Reserve only v7a so files except foo.so for debug buildType
+        // Reserve only v7a and x86 so files except foo.so for debug buildType
         debug {
             include "lib/armeabi-v7a/*.so" 
+            include "lib/x86/*.so"
             exclude "lib/armeabi-v7a/foo.so"
+            exclude "lib/x86/foo.so"
         }
     }
     ```

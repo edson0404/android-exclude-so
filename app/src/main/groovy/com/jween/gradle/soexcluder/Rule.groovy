@@ -10,10 +10,10 @@ class Rule {
     }
     
     void exclude(String...args) {
-        excludeList = Arrays.asList(args)
+        excludeList += Arrays.asList(args)
     }
     
     void include(String...args) {
-        includeList = Arrays.asList(args)
+        includeList += Arrays.asList(args)
     }
 }
