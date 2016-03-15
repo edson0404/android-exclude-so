@@ -13,6 +13,9 @@ Usage
     buildscript {
        repositories {
           jcenter()
+          maven { // package is not in jcenter for now
+              url  "http://dl.bintray.com/jween/maven" 
+          }
        }
 
        dependencies {
@@ -50,7 +53,7 @@ Configuration
     }
     ```
 
-2. Exact the same path pattern with gradle include/exclude
+2. Exact the same path pattern as gradle include/exclude api
 
     ```groovy
     soexcluder {
