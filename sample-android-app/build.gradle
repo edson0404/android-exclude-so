@@ -15,12 +15,8 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'android-soexcluder'
+
 android {
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
-    
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
@@ -31,6 +27,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    
     buildTypes {
         release {
             minifyEnabled false
@@ -38,6 +35,9 @@ android {
         }
     }
 
+    // 
+    // define test flavors
+    // 
     flavorDimensions "foo"
 
     productFlavors {
@@ -53,10 +53,14 @@ android {
 
 
 soexcluder {
+    // exclude all so files whose name ends with -jni.so for flavor 'xxx'
+    // 为名为xxx的flavor移除所有以-jni.so结尾的so文件
     xxx {
         exclude "lib/**/*-jni.so"
     }
     
+    // exclude all so files for flavor whose name ends with charactor 'y'
+    // 当flavor名字以y结尾时, 移除所有so
     ".*y" {
         exclude "**/*"
     }
@@ -67,5 +71,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
-    provided 'com.android.tools.build:gradle:2.1.0-alpha1'
 }

@@ -1,15 +1,13 @@
-[Gradle Android So Excluder Plugin](https://github.com/Jween/android-soexcluder)
-=========================================
+Gradle Android so文件过滤插件
+============================
 
-This plugin will help you exclude so files by flavor or buildType   
-
-[中文版本README](README.cn.md)
+此插件可以根据buildType或者flavor来过滤so文件
 
 
-Usage
+使用
 -----
 
-1. Add the following scripts to your build.gradle
+1. 在 build.gradle 中添加以下脚本
 
     ```groovy
     buildscript {
@@ -29,25 +27,22 @@ Usage
     apply plugin: 'com.android.application'
     apply plugin: 'android-soexcluder'
     ```
-    **Note**: You MUST apply android-soexcluder AFTER android application plugin
+    **注意**: 你必须在apply了android application插件后apply本插件
 
-2. Wish we have step 2! 
- 
-    But that's it, it a quite simple small tool to deal with so files.
 
-Configuration
--------------
+配置
+----
 
-1. Exclude specific so files by flavors
+1. 根据flavor移除指定so文件
 
     ```groovy
     soexcluder {
-        // exclude armeabi-v7a/foo.so and armeabi-v8a/bar.so for flavor1
+        // 为flavor1 移除v7a的foo.so与v8a的bar.so文件
         flavor1 {
             exclude "lib/armeabi-v7a/foo.so", "lib/armeabi-v8a/bar.so"
         }
         
-        // Reserve only v7a and x86 so files except foo.so for debug buildType
+        // 对debug buildType保留v7a和x86 abi的除foo.so之外的所有so文件
         debug {
             include "lib/armeabi-v7a/*.so" 
             include "lib/x86/*.so"
@@ -57,12 +52,12 @@ Configuration
     }
     ```
 
-2. Exact the same path pattern as gradle include/exclude api
+2. 与 gradle 的 include/exclude 的Ant路径正则用法完全一致
 
     ```groovy
     soexcluder {
         
-        // Reserve all so files for debug buildType except foo.so
+        // 对debug buildType保留除foo.so之外的所有so文件
         debug {
             include "**/*" 
             exclude "**/foo.so"
@@ -70,12 +65,12 @@ Configuration
     }
     ```
 
-3. You can even use regex in flavor/buildType entry!
+3. 你甚至可以对buildType以及flavor使用正则表达式!
  
      ```groovy
      soexcluder {
          
-         // Remove all so files if the flavor or buildType name ends with 'o' 
+         // 当flavor或者buildType的名字以o结尾的时候, 移除所有so文件
          ".*o" {
              exclude "**/*"
          }
