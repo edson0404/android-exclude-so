@@ -1,4 +1,4 @@
-Gradle Android so文件过滤插件
+[Gradle Android so文件过滤插件](https://github.com/Jween/android-soexcluder)
 ============================
 
 此插件可以根据buildType或者flavor来过滤so文件
@@ -13,9 +13,6 @@ Gradle Android so文件过滤插件
     buildscript {
        repositories {
           jcenter()
-          maven { // package is not in jcenter for now
-              url  "http://dl.bintray.com/jween/maven" 
-          }
        }
 
        dependencies {
@@ -27,7 +24,7 @@ Gradle Android so文件过滤插件
     apply plugin: 'com.android.application'
     apply plugin: 'android-soexcluder'
     ```
-    **注意**: 你必须在apply了android application插件后apply本插件
+    **注意**: `android-soexcluder`插件必须和`com.android.application`插件配合使用
 
 
 配置

@@ -15,9 +15,6 @@ Usage
     buildscript {
        repositories {
           jcenter()
-          maven { // package is not in jcenter for now
-              url  "http://dl.bintray.com/jween/maven" 
-          }
        }
 
        dependencies {
@@ -29,7 +26,7 @@ Usage
     apply plugin: 'com.android.application'
     apply plugin: 'android-soexcluder'
     ```
-    **Note**: You MUST apply android-soexcluder AFTER android application plugin
+    **Note**: You MUST apply `android-soexcluder` along with `com.android.application`   
 
 2. Wish we have step 2! 
  

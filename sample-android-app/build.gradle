@@ -1,17 +1,15 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url  "http://dl.bintray.com/jween/maven" 
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0-alpha1'
-        classpath 'com.jween.gradle:android-soexcluder:1.0'
+        classpath 'com.jween.gradle:android-soexcluder:1.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+
 
 apply plugin: 'com.android.application'
 apply plugin: 'android-soexcluder'
