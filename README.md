@@ -3,7 +3,7 @@
 
 This plugin will help you exclude so files by flavor or buildType   
 
-[中文版本README](README.cn.md)
+[中文版本 README](README.cn.md)
 
 
 Usage

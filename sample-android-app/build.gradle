@@ -3,10 +3,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-alpha1'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.jween.gradle:android-soexcluder:1.1'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -51,14 +49,14 @@ android {
 
 
 soexcluder {
-    // exclude all so files whose name ends with -jni.so for flavor 'xxx'
-    // 为名为xxx的flavor移除所有以-jni.so结尾的so文件
+    // exclude all so files with names end with -jni.so for flavor 'xxx'
+    // 为名为 xxx 的 flavor 移除所有以 -jni.so 结尾的 so 文件
     xxx {
         exclude "lib/**/*-jni.so"
     }
     
-    // exclude all so files for flavor whose name ends with charactor 'y'
-    // 当flavor名字以y结尾时, 移除所有so
+    // exclude all so files for flavor whose name ends with character 'y'
+    // 当 flavor 名字以 y 结尾时, 移除所有 so
     ".*y" {
         exclude "**/*"
     }

@@ -1,7 +1,7 @@
-[Gradle Android so文件过滤插件](https://github.com/Jween/android-soexcluder)
+[Gradle Android so 文件过滤插件](https://github.com/Jween/android-soexcluder)
 ============================
 
-此插件可以根据buildType或者flavor来过滤so文件
+此插件可以根据 buildType 或者 flavor 来过滤 so 文件
 
 
 使用
