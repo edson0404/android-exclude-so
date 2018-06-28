@@ -1,9 +1,16 @@
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+buildscript {
+    repositories {
+        google()
+    }
 }

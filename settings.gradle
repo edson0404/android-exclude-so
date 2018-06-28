@@ -1,2 +1,2 @@
-include ':sample-android-app'
+include ':exclude-so-sample'
 include ':app'

@@ -1,0 +1,67 @@
+buildscript {
+
+    repositories {
+        jcenter()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.jween.gradle:android-soexcluder:1.1'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'android-soexcluder'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.android.exclude.so"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "foo"
+
+    productFlavors {
+        xxx {
+            dimension "foo"
+        }
+
+        yyy {
+            dimension "foo"
+        }
+    }
+}
+
+
+soexcluder {
+    //Do nothing to show size comparison to yyy.
+    xxx {
+
+    }
+
+    //exclude all .so files for flavor whose name ends with character 'y'
+    ".*y" {
+        exclude "**/*"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+}

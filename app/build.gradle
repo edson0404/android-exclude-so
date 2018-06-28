@@ -10,9 +10,7 @@ buildscript {
 apply plugin: 'com.jfrog.bintray'
 
 
-// 
 // read bintray user and api key form gitignored local.properties file
-// 
 def FILE_LOCAL_PROPERTIES = "local.properties"
 Properties localProp = new Properties()
 def getFileInDir = { dir -> 
@@ -57,7 +55,6 @@ bintray {
         repo = 'maven'
         name = ARTIFACT_ID
         // userOrg = u  
-        licenses = ['Copyfree'] // fuck no, I need help to change this license to BEER-WARE
         websiteUrl = 'https://github.com/Jween/android-soexcluder'
         vcsUrl = 'https://github.com/Jween/android-soexcluder.git'
         
