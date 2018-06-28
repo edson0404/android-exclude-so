@@ -1,13 +1,15 @@
-[Gradle Android so 文件过滤插件](https://github.com/Jween/android-soexcluder)
+[Gradle Android .so Exclude filter plugin]
 ============================
 
-此插件可以根据 buildType 或者 flavor 来过滤 so 文件
+Plugin Forked from @Jween. Repo (https://github.com/Jween/android-soexcluder)
+
+This plugin can be based on buildType or flavor to filter out .so files and Exclude those file from your compiled artifact
 
 
-使用
------
+Use
+---
 
-1. 在 build.gradle 中添加以下脚本
+1. In build.gradle Add the following script
 
     ```groovy
     buildscript {
@@ -24,22 +26,22 @@
     apply plugin: 'com.android.application'
     apply plugin: 'android-soexcluder'
     ```
-    **注意**: `android-soexcluder`插件必须和`com.android.application`插件配合使用
+    **Note**: `android-soexcluder`Plugins must and `com.android.application`Plugin use
 
 
-配置
-----
+Configuration
+-------------
 
-1. 根据flavor移除指定so文件
+1. According to flavor remove specific .so files
 
     ```groovy
     soexcluder {
-        // 为flavor1 移除v7a的foo.so与v8a的bar.so文件
+        // For flavor1 remove v7a of foo.so versus v8a of bar.so file
         flavor1 {
             exclude "lib/armeabi-v7a/foo.so", "lib/armeabi-v8a/bar.so"
         }
         
-        // 对debug buildType保留v7a和x86 abi的除foo.so之外的所有so文件
+        // Correct debug buildType reserved v7a with x86 abi with foo.so all other than .so files.
         debug {
             include "lib/armeabi-v7a/*.so" 
             include "lib/x86/*.so"
@@ -49,12 +51,12 @@
     }
     ```
 
-2. 与 gradle 的 include/exclude 的Ant路径正则用法完全一致
+2. Versus gradle of include/exclude of Ant The path is exactly the same usage
 
     ```groovy
     soexcluder {
         
-        // 对debug buildType保留除foo.so之外的所有so文件
+        // Correct debug buildType Reserved foo.so All other .so files.
         debug {
             include "**/*" 
             exclude "**/foo.so"
@@ -62,12 +64,12 @@
     }
     ```
 
-3. 你甚至可以对buildType以及flavor使用正则表达式!
+3. You can even use regular expressions for buildType and flavor!
  
      ```groovy
      soexcluder {
          
-         // 当flavor或者buildType的名字以o结尾的时候, 移除所有so文件
+         // When the name of the flavor or buildType ends with o, remove all so files
          ".*o" {
              exclude "**/*"
          }
@@ -76,10 +78,5 @@
 
 License   
 -------   
- 
-    "THE BEER-WARE LICENSE" (Revision 42):
 
-    <Jween.Lau@gmail.com> wrote this file. As long as you retain this notice
-    you can do whatever you want with this stuff. If we meet some day, and you think
-    this stuff is worth it, you can buy me a beer in return. -Jween Lau
  
