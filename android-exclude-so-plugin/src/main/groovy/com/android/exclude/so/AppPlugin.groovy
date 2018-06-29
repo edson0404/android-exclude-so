@@ -1,4 +1,4 @@
-package com.jween.gradle.soexcluder
+package com.android.exclude.so
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

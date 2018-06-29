@@ -18,15 +18,15 @@ Use
        }
 
        dependencies {
-          classpath 'com.jween.gradle:android-soexcluder:1.1'
+          classpath 'com.android.exclude.so:android-exclude-so-plugin:2.0'
        }
     }
 
 
     apply plugin: 'com.android.application'
-    apply plugin: 'android-soexcluder'
+    apply plugin: 'android-exclude-so-plugin'
     ```
-    **Note**: `android-soexcluder`Plugins must and `com.android.application`Plugin use
+    **Note**: `android-exclude-so-plugin`Plugins must be imported with `com.android.application` Plugin use
 
 
 Configuration
