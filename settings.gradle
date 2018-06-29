@@ -1,2 +1,4 @@
+rootProject.name = 'android.exclude-so'
+
 include ':exclude-so-sample'
-include ':app'
+include ':android-exclude-so-plugin'

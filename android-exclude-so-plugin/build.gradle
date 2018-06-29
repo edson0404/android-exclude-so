@@ -16,45 +16,15 @@ buildscript {
     }
 }
 
-// read bintray user and api key form gitignored local.properties file
-def FILE_LOCAL_PROPERTIES = "local.properties"
-Properties localProp = new Properties()
-def getFileInDir = { dir ->
-    File ret = new File("$dir$File.separator$FILE_LOCAL_PROPERTIES")
-    ret?.exists() ? ret : null
-}
-
-def rootLocalPropFile = getFileInDir(project.rootDir)
-if (rootLocalPropFile) {
-    localProp.load(rootLocalPropFile.newDataInputStream())
-}
-
-def localPropFile = getFileInDir(project.projectDir)
-if (localPropFile) {
-    Properties tmpProp = new Properties()
-    tmpProp.load(localPropFile.newDataInputStream())
-    localProp.putAll(tmpProp)
-}
-
-def propLocal = { localProp?.get it }
-
 def VERSION = '2.0'
 def GROUP = 'com.android.exclude.so'
-def ARTIFACT_ID = 'android-exclude-so'
+def ARTIFACT_ID = 'android-exclude-so-plugin'
 group = GROUP
 version = VERSION
 
-gradlePlugin {
-    plugins {
-        customPlugin {
-            id = 'com.android.exclude.so'
-            implementationClass = 'com.android.exclude.so.AppPlugin'
-        }
-    }
-}
 
-def u = "vw.edson"
-def k = "d1880d7c47d590a6fe7bd4f7cb2b4e38abe605e3"
+def u = "USER_NAME"
+def k = "API_KEY"
 
 bintray {
     user = u
@@ -73,7 +43,21 @@ bintray {
             name = VERSION
             desc = 'This plugin will help you exclude so files by flavor or buildType'
             vcsTag = VERSION
-            attributes = ['gradle-plugin': 'com.android.exclude.so:com.android.exclude.so.gradle:android-exclude-so']
+            attributes = ['gradle-plugin': 'com.android.exclude.so:com.android.exclude.so.gradle:android-exclude-so-plugin']
+        }
+    }
+}
+
+publishing {
+    publications {
+        SePublication(MavenPublication) {
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
+            groupId GROUP
+            artifactId ARTIFACT_ID
+            version version
         }
     }
 }
